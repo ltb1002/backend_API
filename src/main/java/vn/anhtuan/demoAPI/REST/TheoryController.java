@@ -12,6 +12,7 @@ import vn.anhtuan.demoAPI.POJO.LessonContentPOJO;
 import vn.anhtuan.demoAPI.Repository.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
@@ -34,17 +35,42 @@ public class TheoryController {
         this.lessonContentRepo = lessonContentRepo;
     }
 
+    // =================== Lấy tất cả subjects (có thể filter theo grade) ===================
     @GetMapping("/subjects")
     public List<SubjectPOJO> getSubjects(@RequestParam(required = false) Integer grade) {
-        List<Subject> subjects = (grade != null)
-                ? subjectRepo.findAll().stream().filter(s -> s.getGrade() == grade).collect(Collectors.toList())
-                : subjectRepo.findAll();
+        List<Subject> subjects;
+
+        if (grade != null) {
+            subjects = subjectRepo.findAll().stream()
+                    .filter(s -> Objects.equals(s.getGrade(), grade))
+                    .collect(Collectors.toList());
+        } else {
+            subjects = subjectRepo.findAll();
+        }
 
         return subjects.stream()
                 .map(this::convertSubject)
                 .collect(Collectors.toList());
     }
 
+    // =================== Lấy 1 subject theo grade + code ===================
+    @GetMapping("/grades/{grade}/subjects/{code}")
+    public SubjectPOJO getSubjectByGradeAndCode(
+            @PathVariable Integer grade,
+            @PathVariable String code
+    ) {
+        Subject subject = subjectRepo.findAll().stream()
+                .filter(s -> Objects.equals(s.getGrade(), grade)
+                        && s.getCode().equalsIgnoreCase(code))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException(
+                        "Không tìm thấy môn '" + code + "' cho khối " + grade
+                ));
+
+        return convertSubject(subject);
+    }
+
+    // =================== Lấy danh sách chapters theo subjectId ===================
     @GetMapping("/subjects/{subjectId}/chapters")
     public List<ChapterPOJO> getChapters(@PathVariable Long subjectId) {
         List<Chapter> chapters = chapterRepo.findBySubjectId(subjectId);
@@ -53,6 +79,7 @@ public class TheoryController {
                 .collect(Collectors.toList());
     }
 
+    // =================== Lấy danh sách lessons theo chapterId ===================
     @GetMapping("/chapters/{chapterId}/lessons")
     public List<LessonPOJO> getLessons(@PathVariable Long chapterId) {
         List<Lesson> lessons = lessonRepo.findByChapterId(chapterId);
@@ -61,6 +88,7 @@ public class TheoryController {
                 .collect(Collectors.toList());
     }
 
+    // =================== Lấy nội dung bài học theo lessonId ===================
     @GetMapping("/lessons/{lessonId}/contents")
     public List<LessonContentPOJO> getContents(@PathVariable Long lessonId) {
         List<LessonContent> contents = lessonContentRepo.findByLessonId(lessonId);

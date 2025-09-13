@@ -28,7 +28,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        String[] subjects = {"toan"}; // Thêm các môn khác nếu cần
+        String[] subjects = {"toan", "tienganh", "nguvan"}; // Thêm các môn khác nếu cần
         int[] grades = {6}; // Thêm các lớp khác nếu cần
 
         ObjectMapper mapper = new ObjectMapper();
@@ -97,8 +97,8 @@ public class DataLoader implements CommandLineRunner {
             case "vatly":
                 return "vatly_" + grade + ".json";
             case "văn":
-            case "van":
-                return "van_" + grade + ".json";
+            case "nguvan":
+                return "nguvan_" + grade + ".json";
             case "anh":
             case "tienganh":
                 return "tienganh_" + grade + ".json";
