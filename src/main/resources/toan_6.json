@@ -1,0 +1,154 @@
+{
+  "subjects": [
+    {
+      "code": "toan",
+      "name": "Toán",
+      "grade": 6,
+      "chapters": [
+        {
+          "title": "Chương 1: Số tự nhiên",
+          "orderNo": 1,
+          "lessons": [
+            {
+              "title": "Bài 1: Tập hợp và phần tử của tập hợp",
+              "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
+              "contents": [
+                { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" },
+                { "type": "text", "value": "Ví dụ: Tập hợp các số tự nhiên nhỏ hơn 5: {1,2,3,4}" },
+                { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" },
+                { "type": "text", "value": "Ví dụ: Tập hợp các số tự nhiên nhỏ hơn 5: {1,2,3,4}" },
+                { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" },
+                { "type": "text", "value": "Ví dụ: Tập hợp các số tự nhiên nhỏ hơn 5: {1,2,3,4}" }
+              ]
+            },
+            {
+              "title": "Bài 2: Các phép toán với số tự nhiên",
+              "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
+              "contents": [
+                { "type": "text", "value": "Phép cộng, trừ, nhân, chia là các phép toán cơ bản." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5" },
+                { "type": "text", "value": "Ví dụ: Tập hợp các số tự nhiên nhỏ hơn 5: {1,2,3,4}" },
+                { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" },
+                { "type": "text", "value": "Ví dụ: Tập hợp các số tự nhiên nhỏ hơn 5: {1,2,3,4}" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Chương 2: Phép cộng và phép trừ",
+          "orderNo": 2,
+          "lessons": [
+            {
+              "title": "Bài 1: Phép cộng số tự nhiên",
+              "videoUrl": "",
+              "contents": [
+                { "type": "text", "value": "Phép cộng là phép toán kết hợp hai số thành một số." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f" }
+              ]
+            },
+            {
+              "title": "Bài 2: Phép trừ số tự nhiên",
+              "videoUrl": "",
+              "contents": [
+                { "type": "text", "value": "Phép trừ là phép toán tìm hiệu giữa hai số." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Chương 3: Phép nhân và phép chia",
+          "orderNo": 3,
+          "lessons": [
+            {
+              "title": "Bài 1: Phép nhân",
+              "videoUrl": "",
+              "contents": [
+                { "type": "text", "value": "Phép nhân là phép cộng nhiều lần một số." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5" }
+              ]
+            },
+            {
+              "title": "Bài 2: Phép chia",
+              "videoUrl": "",
+              "contents": [
+                { "type": "text", "value": "Phép chia là phân chia một số thành các phần bằng nhau." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Chương 4: Lũy thừa",
+          "orderNo": 4,
+          "lessons": [
+            {
+              "title": "Bài 1: Khái niệm lũy thừa",
+              "videoUrl": "",
+              "contents": [
+                { "type": "text", "value": "Lũy thừa là tích của một số nhân với chính nó nhiều lần." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" }
+              ]
+            },
+            {
+              "title": "Bài 2: Quy tắc lũy thừa",
+              "videoUrl": "",
+              "contents": [
+                { "type": "text", "value": "Quy tắc: a^m * a^n = a^(m+n)" },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Chương 5: Hình học cơ bản",
+          "orderNo": 5,
+          "lessons": [
+            {
+              "title": "Bài 1: Điểm, đoạn thẳng, đường thẳng",
+              "videoUrl": "",
+              "contents": [
+                { "type": "text", "value": "Điểm, đoạn thẳng và đường thẳng là các khái niệm cơ bản trong hình học." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f" }
+              ]
+            },
+            {
+              "title": "Bài 2: Góc và các loại góc",
+              "videoUrl": "",
+              "contents": [
+                { "type": "text", "value": "Góc là hình tạo bởi hai tia chung gốc." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Chương 6: Ôn tập cuối kỳ",
+          "orderNo": 6,
+          "lessons": [
+            {
+              "title": "Bài 1: Ôn tập số tự nhiên",
+              "videoUrl": "",
+              "contents": [
+                { "type": "text", "value": "Ôn tập các phép toán cơ bản với số tự nhiên." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5" }
+              ]
+            },
+            {
+              "title": "Bài 2: Ôn tập hình học cơ bản",
+              "videoUrl": "",
+              "contents": [
+                { "type": "text", "value": "Ôn tập các kiến thức hình học cơ bản đã học." },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
