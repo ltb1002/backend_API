@@ -3,10 +3,10 @@
     {
       "code": "nguvan",
       "name": "Ngữ Văn",
-      "grade": 6,
+      "grade": 8,
       "chapters": [
         {
-          "title": "Chương 1: Tôi và các bạn",
+          "title": "Chủ đề 1: Tình yêu quê hương đất nước",
           "orderNo": 1,
           "lessons": [
             {
@@ -141,7 +141,7 @@
           ]
         },
         {
-          "title": "Chương 2: Gõ cửa trái tim",
+          "title": "Chủ đề 2: Truyền thống tốt đẹp của dân tộc",
           "orderNo": 2,
           "lessons": [
             {
@@ -250,7 +250,7 @@
           ]
         },
         {
-          "title": "Chương 3: Yêu thương và chia sẻ",
+          "title": "Chủ đề 3: Tình cảm gia đình và tình bạn",
           "orderNo": 3,
           "lessons": [
             {
@@ -284,7 +284,7 @@
           ]
         },
         {
-          "title": "Chương 4: Quê hương yêu dấu",
+          "title": "Chủ đề 4: Tình yêu thiên nhiên",
           "orderNo": 4,
           "lessons": [
             {
@@ -325,7 +325,7 @@
           ]
         },
         {
-          "title": "Chương 5: Những nẻo đường xứ sở",
+          "title": "Chủ đề 5: Nghị lực sống và khát vọng tự do",
           "orderNo": 5,
           "lessons": [
             {
@@ -359,7 +359,7 @@
           ]
         },
         {
-          "title": "Chương 6: Chuyện kể về những người anh hùng",
+          "title": "Chủ đề 6: Trách nhiệm với bản thân và cộng đồng",
           "orderNo": 6,
           "lessons": [
             {
@@ -393,7 +393,7 @@
           ]
         },
         {
-          "title": "Chương 7: Thế giới cổ tích",
+          "title": "Chủ đề 7: Văn học dân gian và giá trị nhân văn",
           "orderNo": 7,
           "lessons": [
             {
@@ -427,7 +427,7 @@
           ]
         },
         {
-          "title": "Chương 8: Khác biệt và gần gũi",
+          "title": "Chủ đề 8: Tình cảm và lý tưởng cách mạng",
           "orderNo": 8,
           "lessons": [
             {
@@ -461,7 +461,7 @@
           ]
         },
         {
-          "title": "Chương 9: Trái Đất - ngôi nhà chung",
+          "title": "Chủ đề 9: Khám phá bản thân và cuộc sống",
           "orderNo": 9,
           "lessons": [
             {

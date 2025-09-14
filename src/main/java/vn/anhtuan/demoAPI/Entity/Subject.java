@@ -6,15 +6,20 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "subjects")
+@Table(
+        name = "subjects",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"code", "grade"})
+        }
+)
 public class Subject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String code;  // toan, ngu_van, tieng_anh
+    @Column(nullable = false)
+    private String code;  // toan, nguvan, tienganh
 
     @Column(nullable = false)
     private String name;  // Toán, Ngữ Văn

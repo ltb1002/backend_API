@@ -3,10 +3,10 @@
     {
       "code": "toan",
       "name": "Toán",
-      "grade": 6,
+      "grade": 8,
       "chapters": [
         {
-          "title": "Chương 1: Số tự nhiên",
+          "title": "Chương I: Đa thức",
           "orderNo": 1,
           "lessons": [
             {
@@ -16,7 +16,7 @@
                 { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
                 { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" },
                 { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                { "type": "image", "value": "https://vietjack.com/toan-6-ket-noi/images/ly-thuyet-bai-1-tap-hop-60651.png" },
+                { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" },
                 { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
                 { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" }
               ],
@@ -64,7 +64,7 @@
           ]
         },
         {
-          "title": "Chương 2: Phép cộng và phép trừ",
+          "title": "Chương II: Hằng đẳng thức đáng nhớ và ứng dụng",
           "orderNo": 2,
           "lessons": [
             {
@@ -106,7 +106,7 @@
           ]
         },
         {
-          "title": "Chương 3: Phép nhân và phép chia",
+          "title": "Chương III: Tứ giác",
           "orderNo": 3,
           "lessons": [
             {
@@ -142,7 +142,7 @@
           ]
         },
         {
-          "title": "Chương 4: Lũy thừa",
+          "title": "Chương IV: Định lí Thalès",
           "orderNo": 4,
           "lessons": [
             {
@@ -178,7 +178,7 @@
           ]
         },
         {
-          "title": "Chương 5: Hình học cơ bản",
+          "title": "Chương V: Tam giác đồng dạng",
           "orderNo": 5,
           "lessons": [
             {
@@ -214,7 +214,7 @@
           ]
         },
         {
-          "title": "Chương 6: Ôn tập cuối kỳ",
+          "title": "Chương VI: Phân thức đại số",
           "orderNo": 6,
           "lessons": [
             {

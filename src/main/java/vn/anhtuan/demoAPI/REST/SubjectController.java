@@ -1,14 +1,9 @@
 package vn.anhtuan.demoAPI.REST;
 
 import org.springframework.web.bind.annotation.*;
-import vn.anhtuan.demoAPI.Entity.Subject;
-import vn.anhtuan.demoAPI.Entity.Chapter;
-import vn.anhtuan.demoAPI.Entity.Lesson;
-import vn.anhtuan.demoAPI.Entity.LessonContent;
-import vn.anhtuan.demoAPI.POJO.SubjectPOJO;
-import vn.anhtuan.demoAPI.POJO.ChapterPOJO;
-import vn.anhtuan.demoAPI.POJO.LessonPOJO;
-import vn.anhtuan.demoAPI.POJO.LessonContentPOJO;
+import vn.anhtuan.demoAPI.Entity.*;
+import vn.anhtuan.demoAPI.POJO.*;
+
 import vn.anhtuan.demoAPI.Repository.*;
 
 import java.util.List;
@@ -18,21 +13,27 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
-public class TheoryController {
+public class SubjectController {
 
     private final SubjectRepository subjectRepo;
     private final ChapterRepository chapterRepo;
     private final LessonRepository lessonRepo;
     private final LessonContentRepository lessonContentRepo;
+    private final ExerciseRepository exerciseRepo;
+    private final ExerciseSolutionRepository exerciseSolutionRepo;
 
-    public TheoryController(SubjectRepository subjectRepo,
-                            ChapterRepository chapterRepo,
-                            LessonRepository lessonRepo,
-                            LessonContentRepository lessonContentRepo) {
+    public SubjectController(SubjectRepository subjectRepo,
+                             ChapterRepository chapterRepo,
+                             LessonRepository lessonRepo,
+                             LessonContentRepository lessonContentRepo,
+                             ExerciseRepository exerciseRepo,
+                             ExerciseSolutionRepository exerciseSolutionRepo) {
         this.subjectRepo = subjectRepo;
         this.chapterRepo = chapterRepo;
         this.lessonRepo = lessonRepo;
         this.lessonContentRepo = lessonContentRepo;
+        this.exerciseRepo = exerciseRepo;
+        this.exerciseSolutionRepo = exerciseSolutionRepo;
     }
 
     // =================== Lấy tất cả subjects (có thể filter theo grade) ===================
@@ -97,6 +98,32 @@ public class TheoryController {
                 .collect(Collectors.toList());
     }
 
+    // =================== Lấy tất cả exercises theo lessonId ===================
+    @GetMapping("/lessons/{lessonId}/exercises")
+    public List<ExercisePOJO> getExercises(@PathVariable Long lessonId) {
+        List<Exercise> exercises = exerciseRepo.findByLessonId(lessonId);
+        return exercises.stream()
+                .map(this::convertExercise)
+                .collect(Collectors.toList());
+    }
+
+    // =================== Lấy danh sách solution theo exerciseId ===================
+    @GetMapping("/exercises/{exerciseId}/solutions")
+    public List<ExerciseSolutionPOJO> getExerciseSolutions(@PathVariable Long exerciseId) {
+        List<ExerciseSolution> solutions = exerciseSolutionRepo.findByExerciseId(exerciseId);
+        return solutions.stream()
+                .map(this::convertExerciseSolution)
+                .collect(Collectors.toList());
+    }
+
+    // =================== Convert Entity → POJO ===================
+    private ExercisePOJO convertExercise(Exercise e) {
+        List<ExerciseSolutionPOJO> solutions = e.getSolutions() != null
+                ? e.getSolutions().stream().map(this::convertExerciseSolution).collect(Collectors.toList())
+                : List.of();
+        return new ExercisePOJO(e.getQuestion(), solutions);
+    }
+
     // =================== Chuyển đổi Entity → POJO ===================
     private SubjectPOJO convertSubject(Subject s) {
         List<ChapterPOJO> chapters = s.getChapters() != null
@@ -121,5 +148,10 @@ public class TheoryController {
 
     private LessonContentPOJO convertLessonContent(LessonContent lc) {
         return new LessonContentPOJO(lc.getId(), lc.getContentType(), lc.getContentValue(), lc.getContentOrder());
+    }
+
+    private ExerciseSolutionPOJO convertExerciseSolution(ExerciseSolution es) {
+        String type = es.getType() != null ? es.getType().toString() : null;
+        return new ExerciseSolutionPOJO(type, es.getValue());
     }
 }

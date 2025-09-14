@@ -3,10 +3,10 @@
     {
       "code": "nguvan",
       "name": "Ngữ Văn",
-      "grade": 6,
+      "grade": 7,
       "chapters": [
         {
-          "title": "Chương 1: Tôi và các bạn",
+          "title": "Chủ đề 1: Tình yêu quê hương đất nước",
           "orderNo": 1,
           "lessons": [
             {
@@ -141,7 +141,7 @@
           ]
         },
         {
-          "title": "Chương 2: Gõ cửa trái tim",
+          "title": "Chủ đề 2: Truyền thống tốt đẹp của dân tộc",
           "orderNo": 2,
           "lessons": [
             {
@@ -250,7 +250,7 @@
           ]
         },
         {
-          "title": "Chương 3: Yêu thương và chia sẻ",
+          "title": "Chủ đề 3: Tình cảm gia đình",
           "orderNo": 3,
           "lessons": [
             {
@@ -284,7 +284,7 @@
           ]
         },
         {
-          "title": "Chương 4: Quê hương yêu dấu",
+          "title": "Chủ đề 4: Tình bạn",
           "orderNo": 4,
           "lessons": [
             {
@@ -325,7 +325,7 @@
           ]
         },
         {
-          "title": "Chương 5: Những nẻo đường xứ sở",
+          "title": "Chủ đề 5: Nghị lực sống",
           "orderNo": 5,
           "lessons": [
             {

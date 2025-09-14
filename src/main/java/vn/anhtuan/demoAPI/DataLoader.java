@@ -15,21 +15,27 @@ public class DataLoader implements CommandLineRunner {
     private final ChapterRepository chapterRepo;
     private final LessonRepository lessonRepo;
     private final LessonContentRepository lessonContentRepo;
+    private final ExerciseRepository exerciseRepo;
+    private final ExerciseSolutionRepository exerciseSolutionRepo;
 
     public DataLoader(SubjectRepository subjectRepo,
                       ChapterRepository chapterRepo,
                       LessonRepository lessonRepo,
-                      LessonContentRepository lessonContentRepo) {
+                      LessonContentRepository lessonContentRepo,
+                      ExerciseRepository exerciseRepo,
+                      ExerciseSolutionRepository exerciseSolutionRepo) {
         this.subjectRepo = subjectRepo;
         this.chapterRepo = chapterRepo;
         this.lessonRepo = lessonRepo;
         this.lessonContentRepo = lessonContentRepo;
+        this.exerciseRepo = exerciseRepo;
+        this.exerciseSolutionRepo = exerciseSolutionRepo;
     }
 
     @Override
     public void run(String... args) {
-        String[] subjects = {"toan", "tienganh", "nguvan"}; // Thêm các môn khác nếu cần
-        int[] grades = {6}; // Thêm các lớp khác nếu cần
+        String[] subjects = {"toan", "nguvan", "tienganh", "khoahoctunhien"}; // thêm môn nếu cần
+        int[] grades = {6,7,8,9}; // thêm lớp nếu cần
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -39,7 +45,7 @@ public class DataLoader implements CommandLineRunner {
                     // Kiểm tra dữ liệu đã load chưa
                     if (!subjectRepo.findByCodeAndGrade(subjectName.toLowerCase(), grade).isEmpty()) continue;
 
-                    // Lấy file JSON
+                    // Đọc file JSON
                     String fileName = getFileName(subjectName, grade);
                     JsonNode root = mapper.readTree(new ClassPathResource(fileName).getInputStream());
 
@@ -62,26 +68,46 @@ public class DataLoader implements CommandLineRunner {
                                 lesson.setTitle(lessonNode.get("title").asText());
                                 lesson.setVideoUrl(lessonNode.path("videoUrl").asText(""));
                                 lesson.setChapter(chapter);
-                                lessonRepo.saveAndFlush(lesson); // Đảm bảo ID được tạo
+                                lessonRepo.saveAndFlush(lesson); // cần ID để map exercise
 
+                                // Load lesson contents
                                 int contentOrder = 1;
                                 for (JsonNode contentNode : lessonNode.path("contents")) {
                                     LessonContent content = new LessonContent();
-                                    content.setLesson(lesson); // Bắt buộc
-                                    content.setContentType(ContentType.valueOf(
-                                            contentNode.get("type").asText()));
+                                    content.setLesson(lesson);
+                                    content.setContentType(ContentType.valueOf(contentNode.get("type").asText()));
                                     content.setContentValue(contentNode.get("value").asText());
                                     content.setContentOrder(contentOrder++);
                                     lessonContentRepo.save(content);
+                                }
+
+                                // Load exercises
+                                int exerciseOrder = 1;
+                                for (JsonNode exerciseNode : lessonNode.path("exercises")) {
+                                    Exercise exercise = new Exercise();
+                                    exercise.setLesson(lesson);
+                                    exercise.setQuestion(exerciseNode.get("question").asText());
+                                    exercise.setOrderNo(exerciseOrder++);
+                                    exerciseRepo.saveAndFlush(exercise);
+
+                                    int solutionOrder = 1;
+                                    for (JsonNode solutionNode : exerciseNode.path("solutions")) {
+                                        ExerciseSolution solution = new ExerciseSolution();
+                                        solution.setExercise(exercise);
+                                        solution.setSolutionType(ContentType.valueOf(solutionNode.get("type").asText()));
+                                        solution.setSolutionValue(solutionNode.get("value").asText());
+                                        solution.setSolutionOrder(solutionOrder++);
+                                        exerciseSolutionRepo.save(solution);
+                                    }
                                 }
                             }
                         }
                     }
 
-                    System.out.println("Loaded data from file: " + fileName);
+                    System.out.println("✅ Loaded data from file: " + fileName);
 
                 } catch (Exception e) {
-                    System.err.println("Failed to load data for subject " + subjectName + " grade " + grade);
+                    System.err.println("❌ Failed to load data for subject " + subjectName + " grade " + grade);
                     e.printStackTrace();
                 }
             }
@@ -93,9 +119,8 @@ public class DataLoader implements CommandLineRunner {
             case "toán":
             case "toan":
                 return "toan_" + grade + ".json";
-            case "lý":
-            case "vatly":
-                return "vatly_" + grade + ".json";
+            case "khoahoctunhien":
+                return "khoahoctunhien_" + grade + ".json";
             case "văn":
             case "nguvan":
                 return "nguvan_" + grade + ".json";

@@ -3,10 +3,10 @@
     {
       "code": "tienganh",
       "name": "Tiếng Anh",
-      "grade": 6,
+      "grade": 8,
       "chapters": [
         {
-          "title": "Unit 1: My New School",
+          "title": "Unit 1: Leisure Time (Thời gian rảnh rỗi)",
           "orderNo": 1,
           "lessons": [
             {
@@ -186,7 +186,7 @@
           ]
         },
         {
-          "title": "Unit 2: My Home",
+          "title": "Unit 2: Life in the Countryside (Cuộc sống ở nông thôn)",
           "orderNo": 2,
           "lessons": [
             {
@@ -241,7 +241,7 @@
           ]
         },
         {
-          "title": "Unit 3: My Friends",
+          "title": "Unit 3: Teenagers (Thiếu niên)",
           "orderNo": 3,
           "lessons": [
             {

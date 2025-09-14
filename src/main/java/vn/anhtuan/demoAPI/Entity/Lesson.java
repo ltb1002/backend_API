@@ -25,6 +25,19 @@ public class Lesson {
     @JsonManagedReference
     private List<LessonContent> contents = new ArrayList<>();
 
+    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OrderBy("orderNo ASC")
+    @JsonManagedReference
+    private List<Exercise> exercises = new ArrayList<>();
+
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
+    }
+
     public Lesson() {
     }
 
