@@ -13,32 +13,104 @@
               "title": "Bài 1: Tập hợp và phần tử của tập hợp",
               "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
               "contents": [
-                { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" },
-                { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                { "type": "image", "value": "https://vietjack.com/toan-6-ket-noi/images/ly-thuyet-bai-1-tap-hop-60651.png" },
-                { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" }
+                {
+                  "type": "text",
+                  "value": "1. Tập hợp và phần tử của tập hợp\n\nTập hợp là một khái niệm cơ bản của toán học (không định nghĩa).\n\nTập hợp được kí hiệu là các chữ cái in hoa: A, B, C, D, …\n\nVí dụ 1.\n\na) Tập hợp các học sinh trong tổ 4 của 6A là: Thắm, Trọng, Xuân, Cương, Bảo, Dũng, Khôi, Huế, Linh.\n\nb) Tập hợp các loại bút bên trong túi bút của bạn Ngọc là: Bút bi, bút chì, bút đánh dấu, bút xóa, bút màu.\n\nMột tập hợp (gọi tắt là tập) bao gồm những đối tượng nhất định. Các đối tượng ấy được gọi là những phần tử của tập hợp."
+                },
+                {
+                  "type": "image",
+                  "value": "https://vietjack.com/toan-6-ket-noi/images/ly-thuyet-bai-1-tap-hop-60651.png"
+                },
+                {
+                  "type": "text",
+                  "value": "x là một phần tử của tập hợp A. Kí hiệu x ∈ A (đọc là x thuộc A).\n\ny không là một phần tử của tập hợp A. Kí hiệu y ∉ A (đọc là y không thuộc A).\n\nChú ý: Khi x thuộc A, ta còn nói “x nằm trong A”, hay “A chứa x”."
+                },
+                {
+                  "type": "text",
+                  "value": "Ví dụ 2. Cho tập hợp M như hình vẽ. Những phần tử nào thuộc tập hợp M, những phần tử nào không thuộc tập hợp M?"
+                },
+                {
+                  "type": "image",
+                  "value": "https://vietjack.com/toan-6-ket-noi/images/ly-thuyet-bai-1-tap-hop-60649.png"
+                },
+                {
+                  "type": "text",
+                  "value": "Tập hợp M gồm các phần tử 1; 4; 8; 9.\n\nTa có 1 là một phần tử của tập hợp M. Kí hiệu 1 ∈ M.\n\n4 là một phần tử thuộc tập hợp M. Kí hiệu 4 ∈ M.\n\n8 là một phần tử thuộc tập hợp M. Kí hiệu 8 ∈ M.\n\n9 là một phần tử thuộc tập hợp M. Kí hiệu 9 ∈ M.\n\n7 không là phần tử thuộc tập hợp M. Kí hiệu 7 ∉ M."
+                },
+                {
+                  "type": "text",
+                  "value": "2. Mô tả một tập hợp\n\n2.1. Liệt kê các phần tử của tập hợp\n\nViết tất cả các phần tử của tập hợp trong dấu {} theo thứ tự tùy ý nhưng mỗi phần tử chỉ được viết một lần."
+                },
+                {
+                  "type": "text",
+                  "value": "Ví dụ 3. Cho hình vẽ: ..."
+                },
+                {
+                  "type": "image",
+                  "value": "https://vietjack.com/toan-6-ket-noi/images/ly-thuyet-bai-1-tap-hop-60648.png"
+                },
+                {
+                  "type": "text",
+                  "value": "Với tập hợp P gồm các số 1; 3; 5; 7; 9; 11 như hình vẽ.\n\nTheo cách liệt kê, ta viết: P = {1; 3; 5; 7; 9; 11}."
+                },
+                {
+                  "type": "text",
+                  "value": "2.1. Nêu dấu hiệu đặc trưng cho các phần tử của tập hợp\n\nGọi x là phần tử của tập hợp, chỉ ra tính chất đặc trưng của phần tử và viết tập hợp đã cho."
+                },
+                {
+                  "type": "text",
+                  "value": "Ví dụ 4. Với tập hợp P = {1; 3; 5; 7; 9; 11}.\n\nTa thấy các phần tử của tập hợp P là các số tự nhiên lẻ và nhỏ hơn 12.\n\nKhi đó, theo cách chỉ ra đặc trưng tập hợp P được viết là:\n\nP = {x | x là số tự nhiên lẻ và nhỏ hơn 12}."
+                }
               ],
               "exercises": [
                 {
                   "question": "Liệt kê các phần tử của tập hợp A = {x | x là số tự nhiên nhỏ hơn 10}.",
                   "solutions": [
-                    { "type": "text", "value": "Các số tự nhiên nhỏ hơn 10 là {0,1,2,3,4,5,6,7,8,9}." },
-                    { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                    { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" },
-                    { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                    { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." }
+                    {
+                      "type": "text",
+                      "value": "Các số tự nhiên nhỏ hơn 10 là {0,1,2,3,4,5,6,7,8,9}."
+                    },
+                    {
+                      "type": "text",
+                      "value": "Tập hợp là một tập hợp các đối tượng xác định."
+                    },
+                    {
+                      "type": "image",
+                      "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+                    },
+                    {
+                      "type": "text",
+                      "value": "Tập hợp là một tập hợp các đối tượng xác định."
+                    },
+                    {
+                      "type": "text",
+                      "value": "Tập hợp là một tập hợp các đối tượng xác định."
+                    }
                   ]
                 },
                 {
                   "question": "Cho tập hợp B = {2, 4, 6, 8}. Hãy viết tập hợp C gồm các phần tử của B chia hết cho 4.",
                   "solutions": [
-                    { "type": "text", "value": "Trong B, các số chia hết cho 4 là {4, 8}." },
-                    { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                    { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                    { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                    { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" }
+                    {
+                      "type": "text",
+                      "value": "Trong B, các số chia hết cho 4 là {4, 8}."
+                    },
+                    {
+                      "type": "text",
+                      "value": "Tập hợp là một tập hợp các đối tượng xác định."
+                    },
+                    {
+                      "type": "text",
+                      "value": "Tập hợp là một tập hợp các đối tượng xác định."
+                    },
+                    {
+                      "type": "text",
+                      "value": "Tập hợp là một tập hợp các đối tượng xác định."
+                    },
+                    {
+                      "type": "image",
+                      "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+                    }
                   ]
                 }
               ]
@@ -47,16 +119,31 @@
               "title": "Bài 2: Các phép toán với số tự nhiên",
               "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
               "contents": [
-                { "type": "text", "value": "Phép cộng, trừ, nhân, chia là các phép toán cơ bản." }
+                {
+                  "type": "text",
+                  "value": "Phép cộng, trừ, nhân, chia là các phép toán cơ bản."
+                }
               ],
               "exercises": [
                 {
                   "question": "Tính 125 + 375",
                   "solutions": [
-                    { "type": "text", "value": "125 + 375 = 500" },
-                    { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                    { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                    { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" }
+                    {
+                      "type": "text",
+                      "value": "125 + 375 = 500"
+                    },
+                    {
+                      "type": "text",
+                      "value": "Tập hợp là một tập hợp các đối tượng xác định."
+                    },
+                    {
+                      "type": "text",
+                      "value": "Tập hợp là một tập hợp các đối tượng xác định."
+                    },
+                    {
+                      "type": "image",
+                      "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+                    }
                   ]
                 }
               ]
@@ -71,16 +158,31 @@
               "title": "Bài 1: Phép cộng số tự nhiên",
               "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
               "contents": [
-                { "type": "text", "value": "Phép cộng là phép toán kết hợp hai số thành một số." }
+                {
+                  "type": "text",
+                  "value": "Phép cộng là phép toán kết hợp hai số thành một số."
+                }
               ],
               "exercises": [
                 {
                   "question": "Tính 245 + 378",
                   "solutions": [
-                    { "type": "text", "value": "245 + 378 = 623" },
-                    { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                    { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                    { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" }
+                    {
+                      "type": "text",
+                      "value": "245 + 378 = 623"
+                    },
+                    {
+                      "type": "text",
+                      "value": "Tập hợp là một tập hợp các đối tượng xác định."
+                    },
+                    {
+                      "type": "text",
+                      "value": "Tập hợp là một tập hợp các đối tượng xác định."
+                    },
+                    {
+                      "type": "image",
+                      "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+                    }
                   ]
                 }
               ]
@@ -89,16 +191,31 @@
               "title": "Bài 2: Phép trừ số tự nhiên",
               "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
               "contents": [
-                { "type": "text", "value": "Phép trừ là phép toán tìm hiệu giữa hai số." }
+                {
+                  "type": "text",
+                  "value": "Phép trừ là phép toán tìm hiệu giữa hai số."
+                }
               ],
               "exercises": [
                 {
                   "question": "Tính 500 - 276",
                   "solutions": [
-                    { "type": "text", "value": "500 - 276 = 224" },
-                    { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                    { "type": "text", "value": "Tập hợp là một tập hợp các đối tượng xác định." },
-                    { "type": "image", "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e" }
+                    {
+                      "type": "text",
+                      "value": "500 - 276 = 224"
+                    },
+                    {
+                      "type": "text",
+                      "value": "Tập hợp là một tập hợp các đối tượng xác định."
+                    },
+                    {
+                      "type": "text",
+                      "value": "Tập hợp là một tập hợp các đối tượng xác định."
+                    },
+                    {
+                      "type": "image",
+                      "value": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+                    }
                   ]
                 }
               ]
@@ -113,13 +230,19 @@
               "title": "Bài 1: Phép nhân",
               "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
               "contents": [
-                { "type": "text", "value": "Phép nhân là phép cộng nhiều lần một số." }
+                {
+                  "type": "text",
+                  "value": "Phép nhân là phép cộng nhiều lần một số."
+                }
               ],
               "exercises": [
                 {
                   "question": "Tính 25 × 12",
                   "solutions": [
-                    { "type": "text", "value": "25 × 12 = 300" }
+                    {
+                      "type": "text",
+                      "value": "25 × 12 = 300"
+                    }
                   ]
                 }
               ]
@@ -128,13 +251,19 @@
               "title": "Bài 2: Phép chia",
               "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
               "contents": [
-                { "type": "text", "value": "Phép chia là phân chia một số thành các phần bằng nhau." }
+                {
+                  "type": "text",
+                  "value": "Phép chia là phân chia một số thành các phần bằng nhau."
+                }
               ],
               "exercises": [
                 {
                   "question": "Tính 144 ÷ 12",
                   "solutions": [
-                    { "type": "text", "value": "144 ÷ 12 = 12" }
+                    {
+                      "type": "text",
+                      "value": "144 ÷ 12 = 12"
+                    }
                   ]
                 }
               ]
@@ -149,13 +278,19 @@
               "title": "Bài 1: Khái niệm lũy thừa",
               "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
               "contents": [
-                { "type": "text", "value": "Lũy thừa là tích của một số nhân với chính nó nhiều lần." }
+                {
+                  "type": "text",
+                  "value": "Lũy thừa là tích của một số nhân với chính nó nhiều lần."
+                }
               ],
               "exercises": [
                 {
                   "question": "Viết kết quả của 2^4",
                   "solutions": [
-                    { "type": "text", "value": "2^4 = 2 × 2 × 2 × 2 = 16" }
+                    {
+                      "type": "text",
+                      "value": "2^4 = 2 × 2 × 2 × 2 = 16"
+                    }
                   ]
                 }
               ]
@@ -164,13 +299,19 @@
               "title": "Bài 2: Quy tắc lũy thừa",
               "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
               "contents": [
-                { "type": "text", "value": "Quy tắc: a^m * a^n = a^(m+n)" }
+                {
+                  "type": "text",
+                  "value": "Quy tắc: a^m * a^n = a^(m+n)"
+                }
               ],
               "exercises": [
                 {
                   "question": "Tính 2^3 × 2^5",
                   "solutions": [
-                    { "type": "text", "value": "2^3 × 2^5 = 2^(3+5) = 2^8 = 256" }
+                    {
+                      "type": "text",
+                      "value": "2^3 × 2^5 = 2^(3+5) = 2^8 = 256"
+                    }
                   ]
                 }
               ]
@@ -185,13 +326,19 @@
               "title": "Bài 1: Điểm, đoạn thẳng, đường thẳng",
               "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
               "contents": [
-                { "type": "text", "value": "Điểm, đoạn thẳng và đường thẳng là các khái niệm cơ bản trong hình học." }
+                {
+                  "type": "text",
+                  "value": "Điểm, đoạn thẳng và đường thẳng là các khái niệm cơ bản trong hình học."
+                }
               ],
               "exercises": [
                 {
                   "question": "Đoạn thẳng có mấy điểm đầu mút?",
                   "solutions": [
-                    { "type": "text", "value": "Đoạn thẳng có 2 điểm đầu mút." }
+                    {
+                      "type": "text",
+                      "value": "Đoạn thẳng có 2 điểm đầu mút."
+                    }
                   ]
                 }
               ]
@@ -200,13 +347,19 @@
               "title": "Bài 2: Góc và các loại góc",
               "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
               "contents": [
-                { "type": "text", "value": "Góc là hình tạo bởi hai tia chung gốc." }
+                {
+                  "type": "text",
+                  "value": "Góc là hình tạo bởi hai tia chung gốc."
+                }
               ],
               "exercises": [
                 {
                   "question": "Một góc vuông có số đo bao nhiêu độ?",
                   "solutions": [
-                    { "type": "text", "value": "Một góc vuông có số đo 90°." }
+                    {
+                      "type": "text",
+                      "value": "Một góc vuông có số đo 90°."
+                    }
                   ]
                 }
               ]
@@ -221,13 +374,19 @@
               "title": "Bài 1: Ôn tập số tự nhiên",
               "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
               "contents": [
-                { "type": "text", "value": "Ôn tập các phép toán cơ bản với số tự nhiên." }
+                {
+                  "type": "text",
+                  "value": "Ôn tập các phép toán cơ bản với số tự nhiên."
+                }
               ],
               "exercises": [
                 {
                   "question": "Tính (120 + 80) × 2",
                   "solutions": [
-                    { "type": "text", "value": "(120 + 80) × 2 = 200 × 2 = 400" }
+                    {
+                      "type": "text",
+                      "value": "(120 + 80) × 2 = 200 × 2 = 400"
+                    }
                   ]
                 }
               ]
@@ -236,13 +395,19 @@
               "title": "Bài 2: Ôn tập hình học cơ bản",
               "videoUrl": "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
               "contents": [
-                { "type": "text", "value": "Ôn tập các kiến thức hình học cơ bản đã học." }
+                {
+                  "type": "text",
+                  "value": "Ôn tập các kiến thức hình học cơ bản đã học."
+                }
               ],
               "exercises": [
                 {
                   "question": "Hình tam giác có mấy cạnh và mấy góc?",
                   "solutions": [
-                    { "type": "text", "value": "Hình tam giác có 3 cạnh và 3 góc." }
+                    {
+                      "type": "text",
+                      "value": "Hình tam giác có 3 cạnh và 3 góc."
+                    }
                   ]
                 }
               ]
