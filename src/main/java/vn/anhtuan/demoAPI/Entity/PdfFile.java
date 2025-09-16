@@ -42,7 +42,6 @@ public class PdfFile {
         this.examType = examType;
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }

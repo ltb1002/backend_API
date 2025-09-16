@@ -4,15 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExercisePOJO {
+    private Long id; // thêm id
     private String question;
     private List<ExerciseSolutionPOJO> solutions = new ArrayList<>();
 
     public ExercisePOJO() {
     }
 
-    public ExercisePOJO(String question, List<ExerciseSolutionPOJO> solutions) {
+    public ExercisePOJO(Long id, String question, List<ExerciseSolutionPOJO> solutions) {
+        this.id = id;
         this.question = question;
         this.solutions = solutions;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getQuestion() {

@@ -1,4 +1,4 @@
-package vn.anhtuan.demoAPI;
+package vn.anhtuan.demoAPI.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,7 +9,7 @@ import vn.anhtuan.demoAPI.Entity.*;
 import vn.anhtuan.demoAPI.Repository.*;
 
 @Component
-public class DataLoader implements CommandLineRunner {
+public class DataLoaderService implements CommandLineRunner {
 
     private final SubjectRepository subjectRepo;
     private final ChapterRepository chapterRepo;
@@ -18,12 +18,12 @@ public class DataLoader implements CommandLineRunner {
     private final ExerciseRepository exerciseRepo;
     private final ExerciseSolutionRepository exerciseSolutionRepo;
 
-    public DataLoader(SubjectRepository subjectRepo,
-                      ChapterRepository chapterRepo,
-                      LessonRepository lessonRepo,
-                      LessonContentRepository lessonContentRepo,
-                      ExerciseRepository exerciseRepo,
-                      ExerciseSolutionRepository exerciseSolutionRepo) {
+    public DataLoaderService(SubjectRepository subjectRepo,
+                             ChapterRepository chapterRepo,
+                             LessonRepository lessonRepo,
+                             LessonContentRepository lessonContentRepo,
+                             ExerciseRepository exerciseRepo,
+                             ExerciseSolutionRepository exerciseSolutionRepo) {
         this.subjectRepo = subjectRepo;
         this.chapterRepo = chapterRepo;
         this.lessonRepo = lessonRepo;

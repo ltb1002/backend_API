@@ -121,7 +121,7 @@ public class SubjectController {
         List<ExerciseSolutionPOJO> solutions = e.getSolutions() != null
                 ? e.getSolutions().stream().map(this::convertExerciseSolution).collect(Collectors.toList())
                 : List.of();
-        return new ExercisePOJO(e.getQuestion(), solutions);
+        return new ExercisePOJO(e.getId(), e.getQuestion(), solutions); // thêm id
     }
 
     // =================== Chuyển đổi Entity → POJO ===================
