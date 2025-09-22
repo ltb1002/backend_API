@@ -1,7 +1,6 @@
 package vn.anhtuan.demoAPI.Entity;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.util.List;
 

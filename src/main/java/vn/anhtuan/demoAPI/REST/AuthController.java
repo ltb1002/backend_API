@@ -37,20 +37,22 @@ public class AuthController {
     public ResponseEntity<Map<String,Object>> register(@RequestBody Map<String,String> body){
         String email = body.get("email");
         String password = body.get("password");
+        String username = body.get("username"); // lấy từ client
 
-        if(email==null || email.isBlank() || password==null || password.isBlank()){
-            return ResponseEntity.badRequest().body(Map.of("success",false,"message","Email & password cannot be empty"));
+        if(email==null || email.isBlank() || password==null || password.isBlank() || username==null || username.isBlank()){
+            return ResponseEntity.badRequest().body(Map.of("success",false,"message","Email, username & password cannot be empty"));
         }
 
         if(userService.findByEmailIgnoreCase(email).isPresent()){
             return ResponseEntity.badRequest().body(Map.of("success",false,"message","Email already exists"));
         }
 
-        User user = new User(email.trim().toLowerCase(), passwordEncoder.encode(password));
+        User user = new User(email.trim().toLowerCase(), passwordEncoder.encode(password), username.trim());
         userService.save(user);
 
         return ResponseEntity.ok(Map.of("success",true,"message","User registered successfully"));
     }
+
 
     @PostMapping("/login")
     public ResponseEntity<Map<String,Object>> login(@RequestBody Map<String,String> body){
