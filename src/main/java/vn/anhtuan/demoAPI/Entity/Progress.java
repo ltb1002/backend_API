@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(
         name = "progress",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id","grade","subject"})
+        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "grade", "subject_id"})
 )
 public class Progress {
 
@@ -22,8 +22,10 @@ public class Progress {
 
     private Integer grade;
 
-    @Column(nullable = false)
-    private String subject;
+    // Quan hệ với Subject
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "subject_id", nullable = false)   // FK tới bảng subjects
+    private Subject subject;
 
     private Integer completedLessons = 0;
     private Integer totalLessons = 0;
@@ -35,8 +37,8 @@ public class Progress {
 
     public Progress() {}
 
-    public Progress(User user, Integer grade, String subject, Integer completedLessons,
-                    Integer totalLessons) {
+    public Progress(User user, Integer grade, Subject subject,
+                    Integer completedLessons, Integer totalLessons) {
         this.user = user;
         this.grade = grade;
         this.subject = subject;
@@ -64,8 +66,8 @@ public class Progress {
     public Integer getGrade() { return grade; }
     public void setGrade(Integer grade) { this.grade = grade; }
 
-    public String getSubject() { return subject; }
-    public void setSubject(String subject) { this.subject = subject; }
+    public Subject getSubject() { return subject; }
+    public void setSubject(Subject subject) { this.subject = subject; }
 
     public Integer getCompletedLessons() { return completedLessons; }
     public void setCompletedLessons(Integer completedLessons) {

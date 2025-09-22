@@ -17,8 +17,10 @@ public class ProgressHistory {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(nullable = false)
-    private String subject;
+    // Quan hệ với Subject
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "subject_id", nullable = false)
+    private Subject subject;
 
     private Integer grade;
 
@@ -29,7 +31,7 @@ public class ProgressHistory {
 
     public ProgressHistory() {}
 
-    public ProgressHistory(User user, String subject, Integer grade, Double progressPercent) {
+    public ProgressHistory(User user, Subject subject, Integer grade, Double progressPercent) {
         this.user = user;
         this.subject = subject;
         this.grade = grade;
@@ -43,8 +45,8 @@ public class ProgressHistory {
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
 
-    public String getSubject() { return subject; }
-    public void setSubject(String subject) { this.subject = subject; }
+    public Subject getSubject() { return subject; }
+    public void setSubject(Subject subject) { this.subject = subject; }
 
     public Integer getGrade() { return grade; }
     public void setGrade(Integer grade) { this.grade = grade; }
@@ -55,3 +57,4 @@ public class ProgressHistory {
     public LocalDateTime getRecordedAt() { return recordedAt; }
     public void setRecordedAt(LocalDateTime recordedAt) { this.recordedAt = recordedAt; }
 }
+

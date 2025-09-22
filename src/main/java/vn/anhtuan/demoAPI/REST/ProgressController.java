@@ -38,7 +38,7 @@ public class ProgressController {
     @GetMapping("/history")
     public List<ProgressHistoryDto> getHistory(
             @RequestParam Long userId,
-            @RequestParam String subject,
+            @RequestParam Long subject,
             @RequestParam String range) {
         return progressService.getHistory(userId, subject, range);
     }

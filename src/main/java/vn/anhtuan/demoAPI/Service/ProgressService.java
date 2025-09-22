@@ -7,12 +7,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import vn.anhtuan.demoAPI.Entity.Progress;
 import vn.anhtuan.demoAPI.Entity.ProgressHistory;
+import vn.anhtuan.demoAPI.Entity.Subject;
 import vn.anhtuan.demoAPI.Entity.User;
 import vn.anhtuan.demoAPI.POJO.ProgressDto;
 import vn.anhtuan.demoAPI.POJO.ProgressHistoryDto;
 import vn.anhtuan.demoAPI.POJO.ProgressUpdateRequest;
 import vn.anhtuan.demoAPI.Repository.ProgressHistoryRepository;
 import vn.anhtuan.demoAPI.Repository.ProgressRepository;
+import vn.anhtuan.demoAPI.Repository.SubjectRepository;
 import vn.anhtuan.demoAPI.Repository.UserRepository;
 
 import java.time.DayOfWeek;
@@ -32,6 +34,9 @@ public class ProgressService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private SubjectRepository subjectRepository;
+
     /**
      * Lấy tiến độ theo user + grade
      */
@@ -50,17 +55,22 @@ public class ProgressService {
         User user = userRepository.findById(req.getUserId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
 
+        // Lấy Subject từ DB bằng subjectId
+        Subject subject = subjectRepository.findById(req.getSubjectId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Subject not found"));
+
+        // Tìm Progress hiện có hoặc tạo mới
         Progress p = progressRepository
-                .findByUserAndGradeAndSubject(user, req.getGrade(), req.getSubject())
+                .findByUserAndGradeAndSubject(user, req.getGrade(), subject)
                 .orElseGet(() -> new Progress(
                         user,
                         req.getGrade(),
-                        req.getSubject(),
+                        subject,
                         req.getCompletedLessons() == null ? 0 : req.getCompletedLessons(),
                         req.getTotalLessons() == null ? 0 : req.getTotalLessons()
                 ));
 
-        // update completed/total an toàn
+        // Update completed/total an toàn
         if (req.getTotalLessons() != null && req.getTotalLessons() >= 0) {
             p.setTotalLessons(req.getTotalLessons());
         }
@@ -79,7 +89,7 @@ public class ProgressService {
         // Lưu lịch sử
         ProgressHistory history = new ProgressHistory(
                 user,
-                req.getSubject(),
+                subject,
                 req.getGrade(),
                 p.getProgressPercent()
         );
@@ -91,9 +101,12 @@ public class ProgressService {
     /**
      * Lấy lịch sử tiến độ theo khoảng thời gian
      */
-    public List<ProgressHistoryDto> getHistory(Long userId, String subject, String range) {
+    public List<ProgressHistoryDto> getHistory(Long userId, Long subjectId, String range) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+
+        Subject subject = subjectRepository.findById(subjectId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Subject not found"));
 
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime start;
@@ -111,7 +124,7 @@ public class ProgressService {
         return rows.stream()
                 .map(h -> new ProgressHistoryDto(
                         user.getId(),
-                        h.getSubject(),
+                        h.getSubject().getName(),
                         h.getGrade(),
                         h.getProgressPercent(),
                         h.getRecordedAt()
@@ -133,7 +146,7 @@ public class ProgressService {
      */
     private ProgressDto toDto(Progress p) {
         return new ProgressDto(
-                p.getSubject(),
+                p.getSubject().getName(),
                 p.getGrade(),
                 p.getCompletedLessons(),
                 p.getTotalLessons(),

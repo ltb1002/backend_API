@@ -29,6 +29,10 @@ public class Subject {
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Chapter> chapters;
 
+    // Mối quan hệ với Progress
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Progress> progresses;
+
     // Constructors
     public Subject() {
     }
@@ -73,4 +77,6 @@ public class Subject {
     public void setChapters(List<Chapter> chapters) {
         this.chapters = chapters;
     }
+    public List<Progress> getProgresses() { return progresses; }
+    public void setProgresses(List<Progress> progresses) { this.progresses = progresses; }
 }
