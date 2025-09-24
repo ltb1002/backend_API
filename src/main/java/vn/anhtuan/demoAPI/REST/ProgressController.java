@@ -21,25 +21,35 @@ public class ProgressController {
     public List<ProgressDto> getProgressByUserAndGrade(
             @PathVariable Long userId,
             @PathVariable Integer grade) {
-        return progressService.getProgressByUserAndGrade(userId, grade);
+        System.out.println("Requesting progress for userId=" + userId + ", grade=" + grade);
+        List<ProgressDto> result = progressService.getProgressByUserAndGrade(userId, grade);
+        if (result.isEmpty()) {
+            System.out.println("No progress found for userId=" + userId + ", grade=" + grade);
+        }
+        return result;
     }
 
     @GetMapping("/user/{userId}")
     public List<ProgressDto> getProgressByUser(@PathVariable Long userId) {
-        return progressService.getProgressByUser(userId);
+        System.out.println("Requesting progress for userId=" + userId);
+        List<ProgressDto> result = progressService.getProgressByUser(userId);
+        if (result.isEmpty()) {
+            System.out.println("No progress found for userId=" + userId);
+        }
+        return result;
     }
+
 
     @PostMapping("/update")
     public ProgressDto updateProgress(@RequestBody ProgressUpdateRequest req) {
-        // Giờ đây req có cả lessonId, chapterId -> service sẽ map sang Lesson, Chapter
         return progressService.updateProgress(req);
     }
 
     @GetMapping("/history")
     public List<ProgressHistoryDto> getHistory(
             @RequestParam Long userId,
-            @RequestParam Long subject,
+            @RequestParam Long subjectId,
             @RequestParam String range) {
-        return progressService.getHistory(userId, subject, range);
+        return progressService.getHistory(userId, subjectId, range);
     }
 }

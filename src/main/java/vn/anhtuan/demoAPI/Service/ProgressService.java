@@ -38,7 +38,7 @@ public class ProgressService {
     private SubjectRepository subjectRepository;
 
     /**
-     * Lấy tiến độ theo user + grade
+     * Lấy tất cả tiến độ của user theo lớp (grade)
      */
     public List<ProgressDto> getProgressByUserAndGrade(Long userId, Integer grade) {
         User user = userRepository.findById(userId)
@@ -48,18 +48,32 @@ public class ProgressService {
     }
 
     /**
-     * Cập nhật tiến độ (hoặc tạo mới nếu chưa có)
+     * Lấy tất cả tiến độ của user
+     */
+    public List<ProgressDto> getProgressByUser(Long userId) {
+        System.out.println("getProgressByUser called with userId=" + userId);
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> {
+                    System.out.println("User not found in DB: " + userId);
+                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+                });
+        List<ProgressDto> result = progressRepository.findByUser(user).stream().map(this::toDto).toList();
+        System.out.println("Progress found: " + result.size());
+        return result;
+    }
+
+    /**
+     * Cập nhật tiến độ học tập
      */
     @Transactional
     public ProgressDto updateProgress(ProgressUpdateRequest req) {
         User user = userRepository.findById(req.getUserId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
 
-        // Lấy Subject từ DB bằng subjectId
         Subject subject = subjectRepository.findById(req.getSubjectId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Subject not found"));
 
-        // Tìm Progress hiện có hoặc tạo mới
+        // Tìm progress hiện tại hoặc tạo mới
         Progress p = progressRepository
                 .findByUserAndGradeAndSubject(user, req.getGrade(), subject)
                 .orElseGet(() -> new Progress(
@@ -70,19 +84,27 @@ public class ProgressService {
                         req.getTotalLessons() == null ? 0 : req.getTotalLessons()
                 ));
 
-        // Update completed/total an toàn
+        // ✅ đảm bảo luôn set subject để tránh null
+        if (p.getSubject() == null) {
+            p.setSubject(subject);
+        }
+
+        // Update totalLessons nếu có
         if (req.getTotalLessons() != null && req.getTotalLessons() >= 0) {
             p.setTotalLessons(req.getTotalLessons());
         }
+
+        // Update completedLessons nếu có
         if (req.getCompletedLessons() != null && req.getCompletedLessons() >= 0) {
             int completed = req.getCompletedLessons();
-            int total = p.getTotalLessons() != null ? p.getTotalLessons() : 0;
+            int total = p.getTotalLessons();
             if (total > 0 && completed > total) {
-                completed = total; // tránh completed > total
+                completed = total; // tránh completed vượt quá total
             }
             p.setCompletedLessons(completed);
         }
 
+        // Tính lại % và lưu DB
         p.updateProgressPercent();
         p = progressRepository.save(p);
 
@@ -99,7 +121,7 @@ public class ProgressService {
     }
 
     /**
-     * Lấy lịch sử tiến độ theo khoảng thời gian
+     * Lấy lịch sử tiến độ theo khoảng thời gian (day, week, month)
      */
     public List<ProgressHistoryDto> getHistory(Long userId, Long subjectId, String range) {
         User user = userRepository.findById(userId)
@@ -133,19 +155,24 @@ public class ProgressService {
     }
 
     /**
-     * Lấy tất cả tiến độ của user
-     */
-    public List<ProgressDto> getProgressByUser(Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-        return progressRepository.findByUser(user).stream().map(this::toDto).toList();
-    }
-
-    /**
      * Convert Progress entity -> DTO
      */
     private ProgressDto toDto(Progress p) {
+        // ✅ tránh NullPointerException
+        if (p.getSubject() == null) {
+            return new ProgressDto(
+                    null,
+                    "Unknown Subject",
+                    p.getGrade(),
+                    p.getCompletedLessons(),
+                    p.getTotalLessons(),
+                    p.getProgressPercent(),
+                    p.getUpdatedAt()
+            );
+        }
+
         return new ProgressDto(
+                p.getSubject().getId().intValue(),
                 p.getSubject().getName(),
                 p.getGrade(),
                 p.getCompletedLessons(),

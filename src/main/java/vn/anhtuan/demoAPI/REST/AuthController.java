@@ -37,21 +37,45 @@ public class AuthController {
     public ResponseEntity<Map<String,Object>> register(@RequestBody Map<String,String> body){
         String email = body.get("email");
         String password = body.get("password");
-        String username = body.get("username"); // lấy từ client
+        String username = body.get("username");
 
+        // Check empty
         if(email==null || email.isBlank() || password==null || password.isBlank() || username==null || username.isBlank()){
-            return ResponseEntity.badRequest().body(Map.of("success",false,"message","Email, username & password cannot be empty"));
+            return ResponseEntity.badRequest().body(Map.of(
+                    "success", false,
+                    "message", "Email, username & password cannot be empty"
+            ));
         }
 
-        if(userService.findByEmailIgnoreCase(email).isPresent()){
-            return ResponseEntity.badRequest().body(Map.of("success",false,"message","Email already exists"));
+        // Trim & lowercase email
+        String emailTrimmed = email.trim().toLowerCase();
+        String usernameTrimmed = username.trim();
+
+        // Debug log
+        System.out.println("Register attempt: email='" + emailTrimmed + "', username='" + usernameTrimmed + "'");
+
+        // Check if email exists
+        boolean exists = userService.findByEmailIgnoreCase(emailTrimmed).isPresent();
+        System.out.println("Email exists: " + exists);
+        if(exists){
+            return ResponseEntity.badRequest().body(Map.of(
+                    "success", false,
+                    "message", "Email already exists"
+            ));
         }
 
-        User user = new User(email.trim().toLowerCase(), passwordEncoder.encode(password), username.trim());
+        // Save user
+        User user = new User(emailTrimmed, passwordEncoder.encode(password), usernameTrimmed);
         userService.save(user);
 
-        return ResponseEntity.ok(Map.of("success",true,"message","User registered successfully"));
+        System.out.println("User saved: " + user.getEmail());
+
+        return ResponseEntity.ok(Map.of(
+                "success", true,
+                "message", "User registered successfully"
+        ));
     }
+
 
 
     @PostMapping("/login")

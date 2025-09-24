@@ -3,17 +3,18 @@ package vn.anhtuan.demoAPI.POJO;
 import java.time.LocalDateTime;
 
 public class ProgressDto {
+    private Integer subjectId;
     private String subject;
     private Integer grade;
     private Integer completedLessons;
     private Integer totalLessons;
-    private Double progressPercent;
+    private Double progressPercent;   // 👈 thiếu dòng này
     private LocalDateTime updatedAt;
 
-    public ProgressDto() {}
-
-    public ProgressDto(String subject, Integer grade, Integer completedLessons,
-                       Integer totalLessons, Double progressPercent, LocalDateTime updatedAt) {
+    public ProgressDto(Integer subjectId, String subject, Integer grade,
+                       Integer completedLessons, Integer totalLessons,
+                       Double progressPercent, LocalDateTime updatedAt) {
+        this.subjectId = subjectId;
         this.subject = subject;
         this.grade = grade;
         this.completedLessons = completedLessons;
@@ -22,7 +23,10 @@ public class ProgressDto {
         this.updatedAt = updatedAt;
     }
 
-    // ===== Getters & Setters =====
+    // Getters & Setters
+    public Integer getSubjectId() { return subjectId; }
+    public void setSubjectId(Integer subjectId) { this.subjectId = subjectId; }
+
     public String getSubject() { return subject; }
     public void setSubject(String subject) { this.subject = subject; }
 

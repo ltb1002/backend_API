@@ -2,7 +2,9 @@ package vn.anhtuan.demoAPI.Entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(
@@ -20,25 +22,30 @@ public class Progress {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    private Integer grade;
+    @Column(nullable = false)
+    private int grade;
 
     // Quan hệ với Subject
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "subject_id", nullable = false)   // FK tới bảng subjects
+    @JoinColumn(name = "subject_id", nullable = false)
     private Subject subject;
 
-    private Integer completedLessons = 0;
-    private Integer totalLessons = 0;
+    @Column(nullable = false)
+    private int completedLessons = 0;
 
-    private Double progressPercent = 0.0;
+    @Column(nullable = false)
+    private int totalLessons = 0;
+
+    @Column(nullable = false)
+    private double progressPercent = 0.0;
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    // ===== Constructor =====
     public Progress() {}
 
-    public Progress(User user, Integer grade, Subject subject,
-                    Integer completedLessons, Integer totalLessons) {
+    public Progress(User user, int grade, Subject subject, int completedLessons, int totalLessons) {
         this.user = user;
         this.grade = grade;
         this.subject = subject;
@@ -47,43 +54,71 @@ public class Progress {
         updateProgressPercent();
     }
 
-    // ===== Logic để tự tính progressPercent =====
+    // ===== Logic tính % tiến độ =====
     public void updateProgressPercent() {
-        if (totalLessons != null && totalLessons > 0 && completedLessons != null) {
-            this.progressPercent = (completedLessons * 100.0) / totalLessons;
+        if (totalLessons > 0) {
+            this.progressPercent = Math.round((completedLessons * 100.0 / totalLessons) * 100.0) / 100.0;
         } else {
             this.progressPercent = 0.0;
         }
     }
 
-    // ===== Getters và Setters =====
+    // ===== Getters & Setters =====
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
 
-    public Integer getGrade() { return grade; }
-    public void setGrade(Integer grade) { this.grade = grade; }
+    public int getGrade() { return grade; }
+    public void setGrade(int grade) { this.grade = grade; }
 
     public Subject getSubject() { return subject; }
     public void setSubject(Subject subject) { this.subject = subject; }
 
-    public Integer getCompletedLessons() { return completedLessons; }
-    public void setCompletedLessons(Integer completedLessons) {
+    public int getCompletedLessons() { return completedLessons; }
+    public void setCompletedLessons(int completedLessons) {
         this.completedLessons = completedLessons;
         updateProgressPercent();
     }
 
-    public Integer getTotalLessons() { return totalLessons; }
-    public void setTotalLessons(Integer totalLessons) {
+    public int getTotalLessons() { return totalLessons; }
+    public void setTotalLessons(int totalLessons) {
         this.totalLessons = totalLessons;
         updateProgressPercent();
     }
 
-    public Double getProgressPercent() { return progressPercent; }
-    public void setProgressPercent(Double progressPercent) { this.progressPercent = progressPercent; }
+    // progressPercent chỉ đọc, không set thủ công
+    public double getProgressPercent() { return progressPercent; }
 
     public LocalDateTime getUpdatedAt() { return updatedAt; }
-    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+
+    // ===== equals & hashCode =====
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Progress)) return false;
+        Progress progress = (Progress) o;
+        return grade == progress.grade &&
+                Objects.equals(user, progress.user) &&
+                Objects.equals(subject, progress.subject);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user, grade, subject);
+    }
+
+    // ===== toString =====
+    @Override
+    public String toString() {
+        return "Progress{" +
+                "id=" + id +
+                ", grade=" + grade +
+                ", completedLessons=" + completedLessons +
+                ", totalLessons=" + totalLessons +
+                ", progressPercent=" + progressPercent +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }
