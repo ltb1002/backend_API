@@ -5,17 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-import vn.anhtuan.demoAPI.Entity.Progress;
-import vn.anhtuan.demoAPI.Entity.ProgressHistory;
-import vn.anhtuan.demoAPI.Entity.Subject;
-import vn.anhtuan.demoAPI.Entity.User;
+import vn.anhtuan.demoAPI.Entity.*;
 import vn.anhtuan.demoAPI.POJO.ProgressDto;
 import vn.anhtuan.demoAPI.POJO.ProgressHistoryDto;
 import vn.anhtuan.demoAPI.POJO.ProgressUpdateRequest;
-import vn.anhtuan.demoAPI.Repository.ProgressHistoryRepository;
-import vn.anhtuan.demoAPI.Repository.ProgressRepository;
-import vn.anhtuan.demoAPI.Repository.SubjectRepository;
-import vn.anhtuan.demoAPI.Repository.UserRepository;
+import vn.anhtuan.demoAPI.Repository.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -36,6 +30,9 @@ public class ProgressService {
 
     @Autowired
     private SubjectRepository subjectRepository;
+
+    @Autowired
+    private UserStreakService streakService; // ✅ thêm streak service
 
     /**
      * Lấy tất cả tiến độ của user theo lớp (grade)
@@ -63,7 +60,7 @@ public class ProgressService {
     }
 
     /**
-     * Cập nhật tiến độ học tập
+     * Cập nhật tiến độ học tập + streak
      */
     @Transactional
     public ProgressDto updateProgress(ProgressUpdateRequest req) {
@@ -116,6 +113,9 @@ public class ProgressService {
                 p.getProgressPercent()
         );
         historyRepository.save(history);
+
+        // ✅ Update streak song song
+        streakService.updateStreak(user.getId());
 
         return toDto(p);
     }
